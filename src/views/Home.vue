@@ -76,6 +76,7 @@ export default {
         this.contactFirstName = "";
         this.contactEmail = "";
         this.contactPhoneNumber = "";
+        this.bio = "";
       });
     },
     showInfo: function(theContact) {
