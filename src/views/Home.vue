@@ -26,7 +26,8 @@
         <p>Email: <input type="text" v-model="contact.email"></p>
         <p>Phone Number: <input type="text" v-model="contact.phone_number"></p>
         <p>Bio: <input type="text" v-model="contact.bio"></p>
-        <button v-on:click="updateContact(contact)">Update contact</button>      
+        <button v-on:click="updateContact(contact)">Update contact</button>
+        <button v-on:click="destroyContact(contact)">Destroy contact</button>      
       </div>
 
       <hr>
@@ -101,6 +102,16 @@ export default {
         theContact.email = response.data.email;
         theContact.phone_number = response.data.phone_number;
         theContact.bio = response.data.bio;
+      });
+    },
+    destroyContact: function(theContact) {
+      console.log(theContact);
+
+      axios.delete(`/api/contacts/${theContact.id}`).then(response => {
+        
+        var index = this.contacts.indexOf(theContact);
+        console.log(index);
+        this.contacts.splice(index, 1);
       });
     }
   }
